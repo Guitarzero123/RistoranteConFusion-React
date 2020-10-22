@@ -18,6 +18,7 @@ class Main extends Component {
     this.setState({ selectedDish: dishId});
   }
 
+    //render must be created whenever you declare a class component
   render() {
     return (
       <div>
@@ -27,7 +28,7 @@ class Main extends Component {
           </div>
         </Navbar>
         <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
-        <DishDetail selectedDish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
+        <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
       </div>
     );
   }
