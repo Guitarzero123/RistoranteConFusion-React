@@ -3,12 +3,6 @@ import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
 
 class Menu extends Component {
-
-    constructor(props) {
-        super(props); //required whenever you declare a class component
-        this.state={};
-    }
-
     
     //render must be created whenever you declare a class component
     render() {
