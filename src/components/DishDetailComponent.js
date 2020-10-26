@@ -46,6 +46,7 @@ function RenderComments({ comments }) {
 }
 
 function DishDetail(props) {
+    if(props.dish != null) {
         return (
             <div className="container">
                 <div className="row">
@@ -68,6 +69,10 @@ function DishDetail(props) {
                 </div>
             </div> 
         );
+    } else {
+        return ( <div></div> );
+    }
+        
 }
 
 
