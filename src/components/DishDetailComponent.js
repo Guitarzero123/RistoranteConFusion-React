@@ -5,8 +5,8 @@ import {
     ModalHeader, ModalBody, Row, Label, Col 
 } from 'reactstrap'; 
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form'
-
+import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Loading } from './LoadingComponent';
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
@@ -131,6 +131,24 @@ function RenderComments({ comments, addComment, dishId }) {
 }
 
 function DishDetail(props) {
+    if(props.isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
+                </div>
+            </div>
+        )
+    }
+    else if(props.errorMessage) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{props.errorMessage}</h4>
+                </div>
+            </div>
+        )
+    }
     if(props.dish != null) {
         return (
             <div className="container">
@@ -161,6 +179,5 @@ function DishDetail(props) {
     }
         
 }
-
 
 export default DishDetail;
