@@ -1,5 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 
+//Handles Dish Actions
 export const Dishes = (state = {
     isLoading: true,
     errorMessage: null,

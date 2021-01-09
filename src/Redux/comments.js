@@ -1,6 +1,7 @@
 import { COMMENTS } from '../shared/comments';
 import * as ActionTypes from './ActionTypes';
 
+//Preforms actions on Comments
 export const Comments = (state = COMMENTS, action) => {
     switch(action.type) {
         case ActionTypes.ADD_COMMENT:

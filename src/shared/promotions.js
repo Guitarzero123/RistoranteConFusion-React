@@ -1,3 +1,4 @@
+
 export const PROMOTIONS = [
     {
       id: 0,

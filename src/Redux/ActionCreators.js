@@ -1,6 +1,7 @@
 import * as ActionTypes from './ActionTypes';
 import { DISHES } from '../shared/dishes';
 
+//Adds Comment to comments sections
 export const addComment = (dishId, rating, author, comment) => ({
     type: ActionTypes.ADD_COMMENT,
     payload: {
@@ -11,6 +12,7 @@ export const addComment = (dishId, rating, author, comment) => ({
     }
 });  
 
+//Loads dishes
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
     
@@ -19,15 +21,18 @@ export const fetchDishes = () => (dispatch) => {
     }, 2000);
 };
 
+//tells fetchDishes if dishes are being loaded
 export const dishesLoading = () => ({
     type: ActionTypes.DISHES_LOADING
 });
 
+//tells website dishes failed loading
 export const dishesFailed = (errorMessage) => ({
     type: ActionTypes.DISHES_FAILED,
     payload: errorMessage
 });
 
+//adds dishes
 export const addDishes = (dishes) => ({
     type: ActionTypes.ADD_DISHES,
     payload: dishes

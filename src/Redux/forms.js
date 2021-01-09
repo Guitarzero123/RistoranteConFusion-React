@@ -1,3 +1,4 @@
+//basic layout for feedback form
 export const InitialFeedback = {
     firstname: '',
     lastname: '',

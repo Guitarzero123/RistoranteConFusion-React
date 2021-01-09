@@ -10,6 +10,7 @@ import { Loading } from './LoadingComponent';
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
 
+//Comment Form Component
 class CommentForm extends Component {
     constructor(props) {
         super(props);
@@ -20,12 +21,14 @@ class CommentForm extends Component {
         this.toggleModal = this.toggleModal.bind(this);
     }
 
+    //Toggles the Modal
     toggleModal() {
         this.setState({
             isModalOpen: !this.state.isModalOpen
         });
     }
 
+    //Handles the forms submission
     handleSubmit(values) {
         this.toggleModal();
         this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
@@ -34,13 +37,15 @@ class CommentForm extends Component {
     render() {
         return (
             <>
+                //Comment submit button
                 <Button outline onClick={this.toggleModal}>
                     <span className="fa fa-pencil fa-lg" />Submit Comment
                 </Button>
-
+                //Comment Form Modal
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
+                        //Comment Form
                         <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="rating" sm={12}>Rating</Label>
@@ -87,6 +92,7 @@ class CommentForm extends Component {
     }
 };
 
+//Renders Dishes in cards
 function RenderDish({ dish }) {
     if(dish != null) {
         return (
@@ -103,9 +109,11 @@ function RenderDish({ dish }) {
     }
 }
 
+//Renders Comments
 function RenderComments({ comments, addComment, dishId }) {
     if(comments != null) {
 
+        //maps comments to commentList array
         const commentList = comments.map((comment) => {
             return (
                 <ListGroupItem key={comment.id} className="border-0">
@@ -118,6 +126,7 @@ function RenderComments({ comments, addComment, dishId }) {
         return (
             <div>
                 <h4>Comments</h4>
+                //Display list of comments
                 <ListGroup>
                     {commentList}
                 </ListGroup>
@@ -131,6 +140,7 @@ function RenderComments({ comments, addComment, dishId }) {
 }
 
 function DishDetail(props) {
+    //displays loading animation
     if(props.isLoading) {
         return (
             <div className="container">
@@ -140,6 +150,7 @@ function DishDetail(props) {
             </div>
         )
     }
+    //Error Handling
     else if(props.errorMessage) {
         return (
             <div className="container">
@@ -149,6 +160,7 @@ function DishDetail(props) {
             </div>
         )
     }
+    //Renders the Dish and all attached comments
     if(props.dish != null) {
         return (
             <div className="container">

@@ -2,6 +2,7 @@ import React,{ Component } from 'react';
 import { Navbar, NavbarBrand, Nav, NavbarToggler, Collapse, NavItem, Jumbotron, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 
+//Displays the Header
 class Header extends Component {
 
     constructor(props) {
@@ -18,18 +19,21 @@ class Header extends Component {
 
     }
 
+    //Toggles the Navbar navigation
     toggleNav() {
         this.setState({ 
             isNavOpen: !this.state.isNavOpen
         });
     }
 
+    //Toggles login modal
     toggleModal() {
         this.setState({
             isModalOpen: !this.state.isModalOpen
         });
     }
 
+    //Handles login form
     handleLogin(event) {
         this.toggleModal();
         alert(`Username: ${this.username.value} Password: ${this.password.value} Remember: ${this.remember.checked}`);
@@ -40,6 +44,7 @@ class Header extends Component {
         return (
             /*<React.Fragment /> */
             <>
+                //Navbar
                 <Navbar dark expand="md">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
@@ -79,6 +84,8 @@ class Header extends Component {
                         </Collapse>
                     </div>
                 </Navbar>
+
+                //Jumbotron
                 <Jumbotron>
                     <div className="container">
                         <div className="row row-header">
@@ -89,6 +96,8 @@ class Header extends Component {
                         </div>
                     </div>
                 </Jumbotron>
+
+                //Login Modal
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody>

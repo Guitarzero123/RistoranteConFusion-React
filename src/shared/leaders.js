@@ -1,3 +1,4 @@
+
 export const LEADERS = [
     {
       id: 0,

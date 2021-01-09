@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import { Loading } from './LoadingComponent';
 
 //One way to declare Functional Components
+//Renders Menu Items 
 function RenderMenuItem({ dish }) {
     return (
         <Card key={dish.id}>
@@ -18,6 +19,7 @@ function RenderMenuItem({ dish }) {
 }
 
 //Another way to declare Functional Components
+//Menu Component
 const Menu = (props) => {
     const menu = props.dishes.dishes.map((dish) => {
         return (
@@ -27,6 +29,7 @@ const Menu = (props) => {
         );
     });
 
+    //Loading animation
     if(props.dishes.isLoading) {
         return (
             <div className="container">
@@ -36,6 +39,7 @@ const Menu = (props) => {
             </div>
         )
     }
+    //handles Errors
     else if(props.dishes.errorMessage) {
         return (
             <div className="container">
@@ -58,6 +62,7 @@ const Menu = (props) => {
                         <hr />
                     </div>
                 </div>
+                //Renders Menu cards
                 <div className="row row-content">
                     {menu}
                 </div>

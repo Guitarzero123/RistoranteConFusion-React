@@ -2,18 +2,22 @@ import React from 'react';
 import { Card, CardImg, CardText, CardBody,  CardTitle, CardSubtitle } from 'reactstrap';
 import { Loading } from './LoadingComponent';
 
+//Card renderer
 function RenderCard({ item, isLoading, errorMessage }) {
+    //display Loading animation
     if(isLoading) {
         return (
             <Loading />
         );
     }
+    //handle Errors
     else if (errorMessage) {
         return (
             <h4>{errorMessage}</h4>      
         );
     }
     else {
+        //Render Card
         return (
             <Card>
                 <CardImg src={item.image} alt={item.name} />
@@ -28,6 +32,7 @@ function RenderCard({ item, isLoading, errorMessage }) {
     
 }
 
+//Renders home page
 function Home(props) {
     return (
         <div className="container">

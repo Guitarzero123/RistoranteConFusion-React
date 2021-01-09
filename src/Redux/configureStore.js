@@ -8,6 +8,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { InitialFeedback } from './forms'
 
+//initializes the store and applies the middleware
 export const ConfigureStore = () => {
     const store = createStore(
         combineReducers({

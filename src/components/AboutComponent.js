@@ -2,6 +2,7 @@ import React from 'react';
 import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
+//Renders the restuarant leaders
 function RenderLeader({ leader }) {
     return (
         <Media tag="li">
@@ -17,8 +18,10 @@ function RenderLeader({ leader }) {
     );
 }
 
+//displays about page
 function About(props) {
 
+    //store rendered leaders in array of leaders
     const leaders = props.leaders.map((leader) => {
         return (
             <RenderLeader leader={leader} />
@@ -80,6 +83,7 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
+                    //displays list of leaders stored in leaders array
                     <Media list>
                         {leaders}
                     </Media>

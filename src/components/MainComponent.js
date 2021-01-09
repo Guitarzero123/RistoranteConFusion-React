@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { addComment, fetchDishes } from '../Redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
+//Maps current state to the Main Components props
 const mapStateToProps = state => {
   return {
     dishes: state.dishes,
@@ -20,18 +21,21 @@ const mapStateToProps = state => {
   };
 };
 
+//maps dispatched actions to the Main Components props
 const mapDispatchToProps = (dispatch) => ({
   addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
   fetchDishes: () => {dispatch(fetchDishes())},
   resetFeedbackForm: ()=> { dispatch(actions.reset('feedback'))}
 });
 
+//Main Component
 class Main extends Component {
 
   constructor(props) {
     super(props);
   }
 
+  //if the component succesful mounted
   componentDidMount() {
     this.props.fetchDishes();
   }
@@ -39,6 +43,7 @@ class Main extends Component {
   //render must be created whenever you declare a class component
   render() {
 
+    //Home page
     const HomePage = () => {
       return (
         <Home dish={this.props.dishes.dishes.filter((dish) => dish.featured === true)[0]}
@@ -49,6 +54,7 @@ class Main extends Component {
       );
     }
 
+    //Handles dish Detail component
     const DishWithId = ({ match }) => {
       return (
         <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId, 10))[0]} 
@@ -59,6 +65,7 @@ class Main extends Component {
       ); 
     }
 
+    //Renders Website
     return (
       <div>
         <Header />
