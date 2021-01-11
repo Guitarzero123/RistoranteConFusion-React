@@ -2,15 +2,52 @@ import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
 
 //Adds Comment to comments sections
-export const addComment = (dishId, rating, author, comment) => ({
+export const addComment = (comment) => ({
     type: ActionTypes.ADD_COMMENT,
-    payload: {
+    payload: comment
+});  
+
+//Posts comment to server
+export const postComment = (dishId, rating, author, comment) => (dispatch) =>  {
+    const newComment = {
         dishId: dishId,
         rating: rating,
         author: author,
         comment: comment
     }
-});  
+
+    newComment.date = new Date().toISOString();
+
+    return fetch(baseUrl + 'comments', {
+        method: 'POST',
+        body: JSON.stringify(newComment),
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        credentials: 'same-origin'
+    })
+        .then(response => {
+            if(response.ok) {
+                return response;
+            } else {
+                let error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => {
+            let errorMessage = new Error(error.message);
+            throw errorMessage;
+        })
+        .then(response => response.json())
+        //dispatchs new comment to redux store
+        .then(comment => dispatch(addComment(comment)))
+        .catch(error => {
+            console.log(`Post comment ${error.message}`);
+            alert('Your comment could not be posted\n Error:' + error.message);
+        }); 
+    
+}
 
 //Loads dishes
 export const fetchDishes = () => (dispatch) => {
