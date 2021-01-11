@@ -69,7 +69,6 @@ class Contact extends Component {
                         <h3>Send Us Your Feedback!</h3>
                     </div>
                     <div className="col-12 col-md-9">
-                        //Feedback Form
                         <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
                             <Row className="form-group">
                                 <Label htmlFor="firstname" md={2}>First Name</Label>

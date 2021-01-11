@@ -44,7 +44,7 @@ class Header extends Component {
         return (
             /*<React.Fragment /> */
             <>
-                //Navbar
+                
                 <Navbar dark expand="md">
                     <div className="container">
                         <NavbarToggler onClick={this.toggleNav} />
@@ -85,7 +85,7 @@ class Header extends Component {
                     </div>
                 </Navbar>
 
-                //Jumbotron
+            
                 <Jumbotron>
                     <div className="container">
                         <div className="row row-header">
@@ -97,7 +97,6 @@ class Header extends Component {
                     </div>
                 </Jumbotron>
 
-                //Login Modal
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
                     <ModalBody>

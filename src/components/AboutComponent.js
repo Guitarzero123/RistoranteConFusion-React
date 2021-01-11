@@ -83,7 +83,7 @@ function About(props) {
                     <h2>Corporate Leadership</h2>
                 </div>
                 <div className="col-12">
-                    //displays list of leaders stored in leaders array
+                    
                     <Media list>
                         {leaders}
                     </Media>
