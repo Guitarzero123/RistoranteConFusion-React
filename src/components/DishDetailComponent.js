@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
+import { FadeTransform, Fade, Stagger} from 'react-animation-components';
 
 const maxLength = (len) => (val) => !(val) || (val.length <= len);
 const minLength = (len) => (val) => val && (val.length >= len);
@@ -98,13 +99,17 @@ class CommentForm extends Component {
 function RenderDish({ dish }) {
     if(dish != null) {
         return (
-            <Card>
-                <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name}></CardImg>
-                <CardBody>
-                    <CardTitle>{dish.name}</CardTitle>
-                    <CardText>{dish.description}</CardText>
-                </CardBody>
-            </Card>
+            <FadeTransform in transformProps={{
+                exitTransform: 'scale(0.5) translateY(-50%)'
+            }}>
+                <Card>
+                    <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name}></CardImg>
+                    <CardBody>
+                        <CardTitle>{dish.name}</CardTitle>
+                        <CardText>{dish.description}</CardText>
+                    </CardBody>
+                </Card>
+            </FadeTransform>
         );
     } else {
         return ( <div></div> );
@@ -118,10 +123,14 @@ function RenderComments({ comments, postComment, dishId }) {
         //maps comments to commentList array
         const commentList = comments.map((comment) => {
             return (
-                <ListGroupItem key={comment.id} className="border-0">
-                    {comment.comment}<br></br>
-                    --{comment.author}, {new Intl.DateTimeFormat('en-CA', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
-                </ListGroupItem>
+                
+                    <ListGroupItem key={comment.id} className="border-0">
+                        <Fade in>
+                            {comment.comment}<br></br>
+                            --{comment.author}, {new Intl.DateTimeFormat('en-CA', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}
+                        </Fade>
+                    </ListGroupItem>
+                
             );
         });
 
@@ -129,9 +138,13 @@ function RenderComments({ comments, postComment, dishId }) {
             <div>
                 <h4>Comments</h4>
                 
-                <ListGroup>
-                    {commentList}
-                </ListGroup>
+                
+                    <ListGroup>
+                        <Stagger in>
+                            {commentList}
+                        </Stagger>
+                    </ListGroup>
+                
                 <CommentForm dishId={dishId} postComment={postComment} />
             </div>
         );

@@ -8,7 +8,7 @@ import Contact from './ContactComponent'
 import DishDetail from './DishDetailComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { postComment, fetchDishes, fetchComments, fetchPromos } from '../Redux/ActionCreators';
+import { postComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../Redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchDishes: () => {dispatch(fetchDishes())},
   fetchComments: () => {dispatch(fetchComments())},
   fetchPromos: () => {dispatch(fetchPromos())},
+  fetchLeaders: () =>{dispatch(fetchLeaders())},
   resetFeedbackForm: ()=> { dispatch(actions.reset('feedback'))}
 });
 
@@ -38,14 +39,15 @@ class Main extends Component {
     super(props);
   }
 
-  //if the component succesful mounted
+  //if the component succesfully mounted
   componentDidMount() {
     this.props.fetchDishes();
     this.props.fetchComments();
     this.props.fetchPromos();
+    this.props.fetchLeaders();
   }
 
-  //render must be created whenever you declare a class component
+  //render must be defined whenever you declare a class component
   render() {
 
     //Home page
@@ -57,7 +59,10 @@ class Main extends Component {
           promotion={this.props.promotions.promotions.filter((promo) => promo.featured === true)[0]}
           promosLoading={this.props.promotions.isLoading}
           promosErrorMessage={this.props.promotions.errorMessage}
-          leader={this.props.leaders.filter((leader) => leader.featured === true)[0]} />
+          leader={this.props.leaders.leaders.filter((leader) => leader.featured === true)[0]} 
+          leadersLoading={this.props.leaders.isLoading}
+          leadersFailed={this.props.leaders.errorMessage}
+          />
       );
     }
 
