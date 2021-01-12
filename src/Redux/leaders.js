@@ -1,6 +1,6 @@
-//handles Leaders actions
-import { LEADERS } from '../shared/leaders';
+import * as ActionTypes from './ActionTypes';
 
+//handles Leaders actions
 export const Leaders = (state = {
     isLoading: true,
     errorMessage: null,
